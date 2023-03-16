@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="./templatehang.css" rel="stylesheet">
+    <title>SpaceHangMan</title>
+</head>
+<body>
+<div class="hero">
+    <div class="container">
+        <video autoplay loop muted plays-inline class="back-video">
+            <source src="./background1.mp4" type="video/mp4">
+        </video>
+        <div class="header">
+            <h1>Guess The Word !</h1>
+        </div>
+        <div class="center">
+            <p hidden_word>{{.WordHidden}}</p>
+            <p class="mt-50" id="guessedletter">Used Letters : {{.Guessedletter}}</p>
+            {{if (eq .GameState 1)}}
+
+            <p class="mt-50">YOU WON !</p>
+
+            <a class="back mt-50" href="http://localhost:1705/home">Back To The Menu</a>
+
+            {{end}}
+            {{if (eq .GameState 2)}}
+            <p class="mt-50">You lose...</p>
+
+            <a class="back mt-50" href="http://localhost:1705/home">Back To The Menu</a>
+            {{end}}
+            {{if (eq .GameState 0)}}
+
+            <p class="mt-50" id="Nombredessaie">Try : {{.NbrTry}} </p>
+
+            <p class="mt-50" id="essaie">Try left : {{.TryLeft}}</p>
+
+            <form class="center" method="POST">
+
+                <label class="mt-50">Rentrez une lettre ou un mot:</label><br/>
+                <input class="mt-50" type="text" name="answer" autofocus><br/>
+                <input class="mt-50" type="submit">
+            </form>
+            {{end}}
+            <img class="planete mt-50" src="./planet{{.TryLeft}}.png">
+        </div>
+    </div>
+</div>
+</body>
