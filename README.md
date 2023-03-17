@@ -2,7 +2,7 @@
 
 This is a simple web version of a hangman game using golang for the back with a space theme. 
 
-## how to run
+## how to run ?
 
 go run . 
 
