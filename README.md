@@ -1,5 +1,11 @@
 # SpaceHangMan
 
+[![CI](https://github.com/StaiLee/SpaceHangMan/actions/workflows/ci.yml/badge.svg)](https://github.com/StaiLee/SpaceHangMan/actions/workflows/ci.yml)
+[![Go](https://img.shields.io/github/go-mod/go-version/StaiLee/SpaceHangMan?logo=go&color=00ADD8)](go.mod)
+[![License: MIT](https://img.shields.io/github/license/StaiLee/SpaceHangMan?color=blue)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/StaiLee/SpaceHangMan?logo=github&color=e3b341)](https://github.com/StaiLee/SpaceHangMan/stargazers)
+
+
 This is a simple web version of a hangman game using golang for the back with a space theme. 
 
 ## how to run ?
