@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Build cross-platform binaries
+        run: |
+          mkdir -p dist
+          NAME="${{ github.event.repository.name }}"
+          VERSION="${{ github.ref_name }}"
+          for target in linux/amd64 linux/arm64 windows/amd64 darwin/amd64 darwin/arm64; do
+            os="${target%/*}"; arch="${target#*/}"; ext=""
+            [ "$os" = "windows" ] && ext=".exe"
+            out="dist/${NAME}_${VERSION}_${os}_${arch}${ext}"
+            echo "Building $out"
+            CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" go build -ldflags="-s -w" -o "$out" .
+          done
+          ls -lh dist
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
